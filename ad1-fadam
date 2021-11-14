@@ -1,0 +1,105 @@
+cadastro=[] 
+eemail=[]
+ccurso=[]
+endereco=[]
+todos =[cadastro,ccurso,eemail,endereco]
+cadastro = list()
+
+def menu():
+    print("                |FADAM|")
+    print("\n- Sistema de gerenciamento de alunos:\n\n1 - Cadastrar Aluno\n2 - Buscar Aluno\n3 - Editar dados do Aluno\n4 - Excluir Aluno\n5 - Lançar Notas\n6 - Relatórios\n0 - Sair ")
+    opt= int(input("\nEscolha uma opção:"))
+    return opt
+
+def add():
+    aluno=str(input("Informe o número da matrícula:"))
+    if aluno in cadastro:
+        print("O Aluno já consta na lista!")
+    else:
+
+        cadastro.append(aluno)
+        curso=str(input("Informe o nome:"))
+        email=str(input("Informe o telefone:"))
+        endereco=str(input("Informe o seu endereço:"))
+        ccurso.append(curso)
+        eemail.append(email)
+        print("Aluno cadastrado com sucesso!")
+    pass 
+
+
+def notas():
+    print("Informe a nota de AD1:")
+    print("Informe a nota de AD2:")
+    pass
+
+
+def busca():
+    aluno=str(input("Informe o nome do aluno:"))
+    if aluno in cadastro:
+        print(cadastro)
+    else:
+        print("O nome não se encontra na lista... Gentileza tentar novamente.")
+    pass 
+
+def excluir():
+    aluno=str(input("Digite o nome do aluno:"))
+    if aluno in cadastro:
+        cadastro.remove(aluno)
+        print("Aluno removido com sucesso!")
+
+    else:
+        print("Aluno não encontrado... Tente novamente!")
+
+    pass
+
+def edit():
+    aluno=str(input("Digite o nome do Aluno que deseja alterar:"))
+    if aluno in cadastro:
+        cadastro.remove(aluno)
+        aluno=str(input("Digite o nome do novo aluno"))
+        cadastro.append(aluno)
+        ask=str(input("Deseja alterar Curso e Email Também? [S/N]"))
+        if ask == "Ss":
+            curso=str(input("Digite o nome do curso que deseja alterar:"))
+            curso.remove(curso)
+            curso=str(input("Digite o nome do novo curso:"))
+            curso.append(curso)
+            email=str(input("Digite o email que deseja alterar:"))
+            eemail.remove(email)
+            email=str(input("Digite um novo email"))
+            eemail.append(email)
+            print("Alterações feitas com sucesso")
+        else:
+            print("Nome alterado com sucesso!")
+def salvar():
+    save=str(input("Deseja salvar arquivo? [S/N]"))
+    if save == "Ss":
+        arquivoName=str(input("Digite o nome do arquivo:"))
+        for i in arquivoName:
+            arquivo=open(arquivoName,"w")
+            arquivo.write(str(i))
+        arquivo.close()
+    else:
+        print("Obrigada!")
+
+    pass
+
+
+opcao = menu()
+while True:
+    if opcao == 1:
+        add()
+    elif opcao == 2:
+        busca()
+    elif opcao == 3:
+        edit()
+    elif opcao == 4:
+        excluir()
+    elif opcao == 5:
+        notas()
+    elif opcao == 6:
+        salvar()
+
+    elif opcao == 0:
+        print("Usuário deslogado do sistema...\nOBRIGADA!\n")
+    break
