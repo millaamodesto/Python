@@ -1,12 +1,15 @@
 from time import sleep
 
-#Função finalizada com sucesso !!
+
+# Função finalizada com sucesso !!
 def add(matricula):
     if cadastro == [()]:
         nome = str(input("Informe o nome:"))
         telefone = str(input("Informe o telefone: "))
         endereco = str(input("Informe o endereço: "))
-        aluno = {'matricula':matricula ,'aluno':nome,'contato': telefone,'endereco':endereco}
+        aluno = {'matricula':matricula ,'aluno':nome,'contato': telefone,
+                 'endereco':endereco, 'ad1': 'Não lançada', 'ad2': 'Não lançada',
+                 'media': 'Não lançada', 'recuperacao': 'Não lançada'}
         print(20 * '-+')
         print("USUÁRIO CADASTRADO COM SUCESSO !!")
         print(20 * '-+')
@@ -31,35 +34,34 @@ def add(matricula):
 
 # Função terminada com sucesso !!
 def busca(matricula):
-    for Paluno in cadastro:
-        for dados in Paluno:
-            if matricula in Paluno.values():
+    for alunos in cadastro:
+        for dados in alunos:
+            if matricula in alunos.values():
                 print(20 * '-+')
                 print("Aluno encontrado !!")
                 print(20 * '-+')
-                print("Dados do aluno: ")
-                print(Paluno)
+                print("Dados do aluno: \n")
+                info(alunos)
                 print()
                 return 0
 
-    print(30*'=')
+    print(30 * '=')
     print('ALUNO NÃO ENCONTRADO NO SISTEMA')
     print(30 * '=')
     return 1
-
 
 # Concluida
 def edit(matricula):
     for Paluno in cadastro:
         for dados in Paluno:
             if matricula in Paluno.values():
-                print(Paluno)
+                info(Paluno)
                 print("Qual dado deseja alterar ? ")
                 print("[1] MATRICULA: " + Paluno.setdefault('matricula'))
                 print("[2] NOME: " + Paluno.setdefault('aluno'))
                 print("[3] NUMERO: " + Paluno.setdefault('contato'))
                 print("[4] ENDERECO: " + Paluno.setdefault('endereco'))
-                op_alter = int(input("DIGITE: "))
+                op_alter = int(input("DIGITE O NÚMERO DA OPÇÃO: "))
                 if op_alter == 1:
                     new_mat = input("DIGITE A NOVA MATRICULA: ")
                     Paluno.update(matricula=new_mat)
@@ -75,23 +77,56 @@ def edit(matricula):
                 print("USUÁRIO EDITADO COM SUCESSO !!")
                 return 0
 
-
 # Concluida - camilla
 def excluir(matricula):
-      for alunos in cadastro:
+    for alunos in cadastro:
         for user in alunos:
-          if matricula in alunos.values():
-            cadastro.remove(alunos)
-            print("\nAluno removido do sistema!\n")
-            print(alunos)
+            if matricula in alunos.values():
+                cadastro.remove(alunos)
+                print("\nAluno removido do sistema!\n")
+                print(alunos)
+                return 0
+
+#concluido - jeff
+def note(matricula):
+    for alunos in cadastro:
+        for dados in alunos:
+            if matricula in alunos.values():
+                info(alunos)
+                new_ad1 = float(input("DIGITE A AD1: "))
+                alunos.update(ad1=new_ad1)
+                new_ad2 = float(input("DIGITE A AD2: "))
+                alunos.update(ad2=new_ad2)
+                print(f'AD1: {new_ad1}')
+                print(f'AD2: {new_ad2}')
+                new_media = (new_ad1 + new_ad2) / 2.0
+                alunos.update(media=new_media)
+                print(f'MÉDIA: {new_media}')
+                if new_media < 7.0:
+                    new_rec=float(input("DIGITE A NOTA DE RECUPERAÇÃO: "))
+                    alunos.update(recuperacao=new_rec)
+                    info(alunos)
             return 0
- 
+
+# Ainda precisa terminar esse - jeff
+def info(alunos):
+    print(25*'-')
+    print("MATRICULA: " + alunos.setdefault('matricula'))
+    print("NOME: " + alunos.setdefault('aluno'))
+    print("TELEFONE: " + alunos.setdefault('contato'))
+    print("ENDERECO: " + alunos.setdefault('endereco'))
+    print("NOTA DA AD1: " + alunos.setdefault('ad1'))#Dando erro
+    print("NOTA DA AD2: " + alunos.setdefault('ad2'))#dando erro
+    print("NOTA DA MÉDIA: " + alunos.setdefault('media'))
+    if alunos.setdefault('recuperacao') != 'Não lançada':
+        print("NOTA DA RECUPERAÇÃO: " + alunos.setdefault('recuperacao'))
+
 op = -1
 aluno = {}
 cadastro = [()]
 
 while op != 0:
-    print(20*'=+')
+    print(20 * '=+')
     print("               |FADAM|")
     print(20 * '=+')
     print('''\n- SISTEMA DE GERENCIAMENTO DO ALUNO -\n
@@ -121,16 +156,21 @@ while op != 0:
             edit(matricula)
         else:
             print("\nAINDA NÃO HÁ USUÁRIOS CADASTRADOS !!\n")
-        
+
     elif op == 4:
         if cadastro != [()]:
             matricula = input("Informe a matrícula do aluno a ser removido: ")
             excluir(matricula)
         else:
-            print(60*'=')
+            print(60 * '=')
             print('''\nNão possui alunos cadastrados no sistema... 
 \nRealize o devido cadastro de alunos a serem excluídos.\n''')
-            print(60*'=')
+            print(60 * '=')
+
+    elif op == 5:#Não terminado - jeff
+        matricula = input("Informe a matrícula do aluno que deseja lançar as notas: ")
+        note(matricula)
+
     elif op == 0:
         print("Usuário deslogado do sistema...\nOBRIGADA!\n")
         exit(0)
