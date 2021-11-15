@@ -1,61 +1,89 @@
-cadastro = [()]
+from time import sleep
 
-def menu():
-    print("\n               |FADAM|\n")
-    print('''- SISTEMA DE GERENCIAMENTO DO ALUNO -\n
-    1 - Cadastrar Aluno
-    2 - Buscar Aluno
-    3 - Editar dados do Aluno
-    4 - Excluir Aluno
-    5 - Lançar Notas
-    6 - Relatórios
-    0 - Sair''')
-    op = int(input("\nEscolha uma opção:"))
-    if op == 1:
-        add()
-    elif op == 2:
-        busca()
-    elif op == 0:
-        print("Usuário deslogado do sistema...\nOBRIGADA!\n")
-    return op
-
-'''
-def register_validator(matricula):
-    for Paluno in cadastro:
-        for dados in Paluno.values():
-            if matricula == dados:
-                print('Aluno já cadastrado :' + Paluno['aluno'] + ' ' + Paluno['matricula'])
-'''
-def add():
-    matricula = str(input("Informe o número da matrícula: "))
+#Função finalizada com sucesso !!
+def add(matricula):
     if cadastro == [()]:
         nome = str(input("Informe o nome:"))
         telefone = str(input("Informe o telefone: "))
         endereco = str(input("Informe o endereço: "))
+        aluno = {'matricula':matricula ,'aluno':nome,'contato': telefone,'endereco':endereco}
+        print(20 * '-+')
+        print("USUÁRIO CADASTRADO COM SUCESSO !!")
+        print(20 * '-+')
+        return cadastro.append(aluno)
     else:
         for Paluno in cadastro:
-            for dados in Paluno.values():
-                if matricula == dados:
-                    print('Aluno já cadastrado :' + Paluno['aluno'] + ' ' + Paluno['matricula'])
-    for i in range(0, len(cadastro)):
-        aluno_i = {'matricula': matricula, 'nome': nome, 'telefone': telefone, 'endereco': endereco}
-    cadastro = [(aluno_i)]
-    print("Aluno cadastrado com sucesso!")
-    print()
-    print(f'Total de cadastros{len(cadastro)}')
-    print(cadastro)
+            for dados in Paluno:
+                if matricula in Paluno.values():
+                    print("Usuário já cadastrado no sistema !:")
+                    print(Paluno)
+                    print()
+                    break
+                else:
+                    nome = str(input("Informe o nome:"))
+                    telefone = str(input("Informe o telefone: "))
+                    endereco = str(input("Informe o endereço: "))
+                    aluno = {'matricula': matricula, 'aluno': nome, 'contato': telefone, 'endereco': endereco}
+                    print(20 * '-+')
+                    print("USUÁRIO CADASTRADO COM SUCESSO !!")
+                    print(20 * '-+')
+                    return cadastro.append(aluno)
 
-def busca():
-    pass
-'''
-    matricula = str(input("Informe a matrícula:"))
-    if matricula in aluno:
-        print(aluno)
-    else:
-        print("O aluno não se encontra na lista... Gentileza tentar novamente.")
-    pass
-'''
+# Função terminada com sucesso !!
+def busca(matricula):
+    for Paluno in cadastro:
+        for dados in Paluno:
+            if matricula in Paluno.values():
+                print(20 * '-+')
+                print("Aluno encontrado !!")
+                print(20 * '-+')
+                print("Dados do aluno: ")
+                print(Paluno)
+                print()
+                break
+            else:
+                print(20*'=')
+                print('ALUNO NÃO ENCONTRADO NO SISTEMA')
+                print(20 * '=')
 
-op = 100
+# Trabalhando nesta
+def edit(matricula):
+    for Paluno in cadastro:
+        if matricula in Paluno.values():
+            print()
+            print(Paluno)
+            Paluno.update(aluno='jefferson santos')
+            print(Paluno)
+
+op = -1
+aluno = {}
+cadastro = [()]
+
 while op != 0:
-    menu()
+    print(20*'=+')
+    print("             |FADAM|")
+    print(20 * '=+')
+    print('''\n- SISTEMA DE GERENCIAMENTO DO ALUNO -\n
+----------------------------------------
+    [1] - Cadastrar Aluno
+    [2] - Buscar Aluno
+    [3] - Editar dados do Aluno
+    [4] - Excluir Aluno
+    [5] - Lançar Notas
+    [6] - Relatórios
+    [0] - Sair''')
+    op = int(input("\nEscolha uma opção:"))
+    if op == 1:
+        matricula = input("Informe o número da matrícula: ")
+        add(matricula)
+        sleep(2)
+    elif op == 2:
+        if cadastro != [()]:
+            matricula = input("Informe a matrícula:")
+            busca(matricula)
+        else:
+            print("\nAINDA NÃO HÁ USUÁRIOS CADASTRADOS !!\n")
+
+    elif op == 0:
+        print("Usuário deslogado do sistema...\nOBRIGADA!\n")
+        exit(0)
