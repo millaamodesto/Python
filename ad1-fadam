@@ -74,12 +74,13 @@ def edit(matricula):
 
 # Trabalhando nesta - camilla
 def excluir(matricula):
-    for alunos in cadastro:
-        if matricula in alunos.values():
+      for alunos in cadastro:
+        for user in alunos:
+          if matricula in alunos.values():
             cadastro.remove(alunos)
             print("\nAluno removido do sistema!\n")
             print(alunos)
-
+            return 0
  
 op = -1
 aluno = {}
