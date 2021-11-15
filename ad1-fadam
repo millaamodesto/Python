@@ -46,22 +46,31 @@ def busca(matricula):
                 print('ALUNO NÃO ENCONTRADO NO SISTEMA')
                 print(20 * '=')
 
-# Trabalhando nesta
-def edit(matricula):
+# Trabalhando nesta - jeff
+'''def edit(matricula):
     for Paluno in cadastro:
         if matricula in Paluno.values():
             print()
             print(Paluno)
             Paluno.update(aluno='jefferson santos')
-            print(Paluno)
+            print(Paluno)'''
 
+# Trabalhando nesta - camilla
+def excluir(matricula):
+    for alunos in cadastro:
+        if matricula in alunos.values():
+            cadastro.remove(alunos)
+            print("\nAluno removido do sistema!\n")
+            print(alunos)
+
+ 
 op = -1
 aluno = {}
 cadastro = [()]
 
 while op != 0:
     print(20*'=+')
-    print("             |FADAM|")
+    print("               |FADAM|")
     print(20 * '=+')
     print('''\n- SISTEMA DE GERENCIAMENTO DO ALUNO -\n
 ----------------------------------------
@@ -72,7 +81,7 @@ while op != 0:
     [5] - Lançar Notas
     [6] - Relatórios
     [0] - Sair''')
-    op = int(input("\nEscolha uma opção:"))
+    op = int(input("\nEscolha uma opção: "))
     if op == 1:
         matricula = input("Informe o número da matrícula: ")
         add(matricula)
@@ -83,7 +92,15 @@ while op != 0:
             busca(matricula)
         else:
             print("\nAINDA NÃO HÁ USUÁRIOS CADASTRADOS !!\n")
-
+    elif op == 4:
+        if cadastro != [()]:
+            matricula = input("Informe a matrícula do aluno a ser removido: ")
+            excluir(matricula)
+        else:
+            print(60*'=')
+            print('''\nNão possui alunos cadastrados no sistema... 
+\nRealize o devido cadastro de alunos a serem excluídos.\n''')
+            print(60*'=')
     elif op == 0:
         print("Usuário deslogado do sistema...\nOBRIGADA!\n")
         exit(0)
