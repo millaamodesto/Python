@@ -1,8 +1,7 @@
-cadastro = list()
-aluno = list()
+cadastro = [()]
 
 def menu():
-    print("\n\n               |FADAM|\n")
+    print("\n               |FADAM|\n")
     print('''- SISTEMA DE GERENCIAMENTO DO ALUNO -\n
     1 - Cadastrar Aluno
     2 - Buscar Aluno
@@ -11,70 +10,52 @@ def menu():
     5 - Lançar Notas
     6 - Relatórios
     0 - Sair''')
-    op= int(input("\nEscolha uma opção: "))
+    op = int(input("\nEscolha uma opção:"))
     if op == 1:
         add()
     elif op == 2:
         busca()
-    #elif op == 3:
-        #edit()
-    #elif op == 4:
-        #excluir()
-    #elif op == 5:
-        #notas()
-    #elif op == 6:
-        #relatorios()
     elif op == 0:
         print("Usuário deslogado do sistema...\nOBRIGADA!\n")
     return op
 
+'''
+def register_validator(matricula):
+    for Paluno in cadastro:
+        for dados in Paluno.values():
+            if matricula == dados:
+                print('Aluno já cadastrado :' + Paluno['aluno'] + ' ' + Paluno['matricula'])
+'''
 def add():
-    matricula=str(input("Informe o número da matrícula: "))
-    if aluno in cadastro:
-        print("\nO Aluno já consta na lista!")
+    matricula = str(input("Informe o número da matrícula: "))
+    if cadastro == [()]:
+        nome = str(input("Informe o nome:"))
+        telefone = str(input("Informe o telefone: "))
+        endereco = str(input("Informe o endereço: "))
     else:
-        nome=str(input("Informe o nome: "))
-        telefone=str(input("Informe o telefone: "))
-        endereco=str(input("Informe o endereço: "))
-        aluno.append(matricula)
-        aluno.append(nome)
-        aluno.append(telefone)
-        aluno.append(endereco)
-        print("\nAluno cadastrado com sucesso!\n")
-        print(aluno)
-        #cadastro.append(aluno)
-        #print(cadastro)
-    
-    pass 
+        for Paluno in cadastro:
+            for dados in Paluno.values():
+                if matricula == dados:
+                    print('Aluno já cadastrado :' + Paluno['aluno'] + ' ' + Paluno['matricula'])
+    for i in range(0, len(cadastro)):
+        aluno_i = {'matricula': matricula, 'nome': nome, 'telefone': telefone, 'endereco': endereco}
+    cadastro = [(aluno_i)]
+    print("Aluno cadastrado com sucesso!")
+    print()
+    print(f'Total de cadastros{len(cadastro)}')
+    print(cadastro)
 
-def busca(aluno):
-    matricula=str(input("Informe a matrícula: "))
+def busca():
+    pass
+'''
+    matricula = str(input("Informe a matrícula:"))
     if matricula in aluno:
-        print("\nAluno encontrado!\n")
         print(aluno)
     else:
-        print("\nO aluno não se encontra na lista... Gentileza tentar novamente.\n")
-    pass 
-
-#def edit():
-
-#def excluir(matricula,cadastro):
-    for aluno in cadastro:
-        if aluno["matricula"] == matricula:
-            cadastro.remove(aluno)
-            break
-    return cadastro
-
-#def notas():
-    print("Informe a nota de AD1: ")
-    print("Informe a nota de AD2: ")
-    print("Informe a nota de recuperação: ")
-
-
-#def relatorios():
-
+        print("O aluno não se encontra na lista... Gentileza tentar novamente.")
+    pass
+'''
 
 op = 100
 while op != 0:
     menu()
-    
