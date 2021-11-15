@@ -40,20 +40,37 @@ def busca(matricula):
                 print("Dados do aluno: ")
                 print(Paluno)
                 print()
-                break
-            else:
-                print(20*'=')
-                print('ALUNO NÃO ENCONTRADO NO SISTEMA')
-                print(20 * '=')
+                return 0
 
-# Trabalhando nesta - jeff
-'''def edit(matricula):
+    print(30*'=')
+    print('ALUNO NÃO ENCONTRADO NO SISTEMA')
+    print(30 * '=')
+    return 1
+
+
+# Trabalhando nesta
+def edit(matricula):
     for Paluno in cadastro:
         if matricula in Paluno.values():
-            print()
+            print("Qual dado deseja alterar ? ")
+            print("[1] MATRICULA: " + Paluno.setdefault('matricula'))
+            print("[2] NOME: " + Paluno.setdefault('aluno'))
+            print("[3] NUMERO: " + Paluno.setdefault('numero'))
+            op_alter = int(input("DIGITE: "))
+            if op_alter == 1:
+                new_mat = input("DIGITE A NOVA MATRICULA: ")
+                Paluno.update(matricula=new_mat)
+            elif op_alter == 2:
+                new_name = input("DIGITE O NOVO NOME: ")
+                Paluno.update(aluno=new_name)
+            elif op_alter == 3:
+                new_number = input("DIGITE O NOVO TELEFONE: ")
+                Paluno.update(aluno=new_number)
+            elif op_alter == 4:
+                new_ender=input("DIGITE O NOVO ENDEREÇO: ")
+                Paluno.update(aluno=new_ender)
+            print("USUÁRIO EDITADO COM SUCESSO !!")
             print(Paluno)
-            Paluno.update(aluno='jefferson santos')
-            print(Paluno)'''
 
 # Trabalhando nesta - camilla
 def excluir(matricula):
@@ -92,6 +109,11 @@ while op != 0:
             busca(matricula)
         else:
             print("\nAINDA NÃO HÁ USUÁRIOS CADASTRADOS !!\n")
+
+    elif op == 3:
+        matricula = input("Informe a matrícula do aluno que deseja realizar alterações: ")
+        edit(matricula)
+        
     elif op == 4:
         if cadastro != [()]:
             matricula = input("Informe a matrícula do aluno a ser removido: ")
