@@ -86,36 +86,41 @@ def note(matricula):
     for alunos in cadastro:
         for dados in alunos:
             if matricula in alunos.values():
-                info(alunos)
-                new_ad1 = float(input("Informe a nota de AD1: "))
-                alunos.update(ad1=new_ad1)
-                new_ad2 = float(input("Informe a nota de AD2: "))
-                alunos.update(ad2=new_ad2)
+                new_ad1 = float(input("DIGITE A AD1: "))
+                new_ad2 = float(input("DIGITE A AD2: "))
                 print(f'AD1: {new_ad1}')
                 print(f'AD2: {new_ad2}')
                 new_media = (new_ad1 + new_ad2) / 2.0
-                alunos.update(media=new_media)
                 print(f'MÉDIA: {new_media}')
+                new_ad1 = str(new_ad1)
+                new_ad2 = str(new_ad2)
+                new_media1 = str(new_media)
+                alunos.update(ad1=new_ad1)
+                alunos.update(ad2=new_ad2)
+                alunos.update(media=new_media1)
                 if new_media < 7.0:
-                    new_rec=float(input("Informe a NOTA DE RECUPERAÇÃO: "))
+                    new_rec=float(input("DIGITE A NOTA DE RECUPERAÇÃO: "))
+                    new_rec=str(new_rec)
                     alunos.update(recuperacao=new_rec)
                     info(alunos)
-            return 0
+                    return 0
+                else:
+                    return 0
 
-# Ainda precisa terminar esse - jeff
+# concluido
 def info(alunos):
-    print(30*'-')
+    print(25*'-')
     print("MATRICULA: " + alunos.setdefault('matricula'))
     print("NOME: " + alunos.setdefault('aluno'))
     print("TELEFONE: " + alunos.setdefault('contato'))
     print("ENDERECO: " + alunos.setdefault('endereco'))
-    print(30 * '-')
     print("NOTA DA AD1: " + alunos.setdefault('ad1'))#Dando erro
     print("NOTA DA AD2: " + alunos.setdefault('ad2'))#dando erro
     print("NOTA DA MÉDIA: " + alunos.setdefault('media'))
-    print(30 * '-')
     if alunos.setdefault('recuperacao') != 'Não lançada':
         print("NOTA DA RECUPERAÇÃO: " + alunos.setdefault('recuperacao'))
+    else:
+        print("não há nota de recupereção ")
 
 # Em processo - Camilla 
 def relatorios():
@@ -183,9 +188,12 @@ while op != 0:
 \nRealize o devido cadastro de alunos a serem excluídos.\n''')
             print(60 * '=')
 
-    elif op == 5:#Não terminado - jeff
-        matricula = input("Informe a matrícula do aluno que deseja lançar as notas: ")
-        note(matricula)
+    elif op == 5:
+        if cadastro != [()]:
+            matricula = input("Informe a matrícula do aluno que deseja lançar as notas: ")
+            note(matricula)
+        else:
+            print("Matricula não cadastrada, utilize outra !")
 
     elif op == 6:
         relatorios()    
