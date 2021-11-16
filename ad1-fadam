@@ -139,11 +139,9 @@ def relatorios():
         print('|' + '-' * 70 + '|')
         print(f'|{"MATRICULA".center(11)} | {"ALUNO".center(20)} | {"ASSINATURA".center(32)} |')
         print('|' + '-' * 70 + '|') 
-        for alunos in cadastro:
-            for user in alunos:
-                print(f'|{matricula[-10:].center(11)} | {alunos["aluno"].center(20)} | ________________________________ |')
-                print('|' + '-' * 70 + '|')
-                return 0
+        for alunos in cadastro:# Pendente centralizar lista 
+            if alunos != ():
+                print("|" + alunos.setdefault('matricula') + "          |" + alunos.setdefault('aluno') + "                " + ('| ________________________________ |') ) 
 
 
 op = -1
@@ -200,7 +198,10 @@ while op != 0:
             print("Matricula não cadastrada, utilize outra !")
 
     elif op == 6:
-        relatorios()    
+        if cadastro != [()]:
+            relatorios()
+        else:
+            print("Não há usuários!")
 
     elif op == 0:
         print("Usuário deslogado do sistema...\nOBRIGADA!\n")
