@@ -139,9 +139,21 @@ def relatorios():
         print('|' + '-' * 70 + '|')
         print(f'|{"MATRICULA".center(11)} | {"ALUNO".center(20)} | {"ASSINATURA".center(32)} |')
         print('|' + '-' * 70 + '|') 
-        for alunos in cadastro:# Pendente centralizar lista 
+        for alunos in cadastro:
             if alunos != ():
-                print("|" + alunos.setdefault('matricula') + "          |" + alunos.setdefault('aluno') + "                " + ('| ________________________________ |') ) 
+                print("|" + alunos.setdefault('matricula').center(12) + "|" + alunos.setdefault('aluno').center(22) + ('| ________________________________ |') ) 
+    if op_dados == 2:
+        print('|' + '-' * 83 + '|')
+        print(f'| {"---------- RELATÓRIO DE NOTAS ----------".center(81)} |')
+        print('|' + '-' * 83 + '|')
+        print(f'|{"MATRICULA".center(11)} | {"ALUNO".center(11)} | {"AD1".center(11)} | {"AD2".center(11)} | {"MÉDIA".center(11)} | {"RECUPERAÇÃO".center(12)} |')
+        print('|' + '-' * 83 + '|') 
+        for alunos in cadastro:
+            if alunos != ():
+                print("|" + alunos.setdefault('matricula').center(12) + "|" + alunos.setdefault('aluno').center(13) + "|" + alunos.setdefault('ad1').center(13) + "|" + alunos.setdefault('ad2').center(13) + "|" + alunos.setdefault('media').center(13) + "|" + alunos.setdefault('recuperacao').center(14) + "|" ) 
+
+    if op_dados == 3:
+        print("teste2")
 
 
 op = -1
