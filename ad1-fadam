@@ -82,7 +82,6 @@ def excluir(matricula):
             if matricula in alunos.values():
                 cadastro.remove(alunos)
                 print("\nAluno removido do sistema!\n")
-                print(alunos)
                 return 0
 
 def note(matricula):
@@ -110,7 +109,6 @@ def note(matricula):
                 else:
                     return 0
 
-# concluido
 def info(alunos):
     print("MATRICULA: " + alunos.setdefault('matricula'))
     print("NOME: " + alunos.setdefault('aluno'))
@@ -123,10 +121,9 @@ def info(alunos):
     if alunos.setdefault('recuperacao') != 'Não lançada':
         print("NOTA DA RECUPERAÇÃO: " + alunos.setdefault('recuperacao'))
     else:
-        print("não há nota de recupereção ")
+        print("não há nota de recuperação ")
         print(30*'-')
 
-# Em processo - Camilla 
 def relatorios():
     print(''' 
   [1] - Gerar lista de frequência
